@@ -1,6 +1,19 @@
 <?php
 include('header.php');
 $network_info = $client->getinfo ();
+$network_info = $client->getinfo ();
+if($network_info == ""){
+$blk_trans = "0";
+$blk_mdiff = "0";
+$blk_amount = "0";
+$blk_size = "0";
+$blk_ver = "0";
+$blk_flgd = "unknown";
+$blk_bits = "unknown";
+$blk_nonce = "0";
+$blk_confirm = "0";
+echo "Error connect to RPC_Client.";
+}else{
 $net_speed = $client->getmininginfo ();
 $net_diff = $client->getdifficulty ();
 $net_speedh = $net_speed["netmhashps"];
@@ -22,6 +35,7 @@ if($net_sf == "PH/s"){
 $net_speedh /= 1000;
 $net_speedh /= 1000;
 $net_speedh /= 1000;
+}
 }
 ?>
 <!DOCTYPE html>
@@ -107,9 +121,23 @@ $net_speedh /= 1000;
 </thead>
 <tbody>
 <?php 
+if($network_info == ""){
+$blk_trans = "0";
+$blk_mdiff = "0";
+$blk_amount = "0";
+$blk_size = "0";
+$blk_ver = "0";
+$blk_flgd = "unknown";
+$blk_bits = "unknown";
+$blk_nonce = "0";
+$blk_confirm = "0";
+}else{
 $vt_blk = $v_blk;
 $vt_get = $_GET['limit'];
 $v_blk += $vt_get;
+if($network_info["blocks"] <= $v_blk){
+$v_blk = $network_info["blocks"];
+}
 for ($ig = 1; $ig <= $v_blk; $ig++) {
 $blk_height = $network_info["blocks"];
 $block_index = $blk_height - $ig;
@@ -135,6 +163,7 @@ $cls_ldl = "label label-success";
                <td data-title="Amount">',$blk_amount.' <small>',$short.'</small></td>
 			   <td data-title="Difficulty">',$blk_mdiff.'</td>
             </tr>';
+}
 }
 ?>
 </tbody>
