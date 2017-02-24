@@ -1,5 +1,18 @@
 <?php
 include('header.php');
+$network_info = $client->getinfo ();
+if($network_info == ""){
+$blk_trans = "0";
+$blk_mdiff = "0";
+$blk_amount = "0";
+$blk_size = "0";
+$blk_ver = "0";
+$blk_flgd = "unknown";
+$blk_bits = "unknown";
+$blk_nonce = "0";
+$blk_confirm = "0";
+echo "Error connect to RPC_Client.";
+}else{
 $blk_get = $_GET['blkc'];
 if($blk_get == ""){
 $blk_inft = $_POST['blkinf'];
@@ -13,6 +26,64 @@ for ($blk_inf = 1; $blk_inf <= $blk_inft; $blk_inf++) {
 }
 $blk_inf--;
 $block_index = $blk_inf;
+$data = "data/blk/blk$block_index.ini";
+if ($blk_save == "on"){
+if (file_exists($data)) {
+$blk_data = parse_ini_file("$data");
+$block_hash = $blk_data['hash'];
+$blk_info = $client->getblock($block_hash);
+$blk_tx = $blk_info["tx"];
+$blk_mdiff = $blk_data['diff'];
+$blk_trans = $blk_data['tranz'];
+$blk_fee = $blk_data['fees'];
+$blk_amount = $blk_data['reward'];
+$blk_flgd = $blk_data['miner'];
+$blk_size = $blk_data['size'];
+$blk_ver = $blk_data['version'];
+$blk_bits = $blk_data['bits'];
+$blk_nonce = $blk_data['nonce'];
+$blk_confirm = $blk_data['confirm'];
+$epoch = $blk_data['timestamp'];
+} else {
+$block_hash = $client->getblockhash($block_index);
+$blk_info = $client->getblock($block_hash);
+$blk_mdiff = $blk_info["difficulty"];
+$blk_tx = $blk_info["tx"];
+$blk_trans = count($blk_tx);
+$blk_fee = $fee * ($blk_trans - 1);
+$blk_amount = $blk_info["mint"];
+$blk_flgd = $blk_info["flags"];
+$blk_size = $blk_info["size"];
+$blk_ver = $blk_info["version"];
+$blk_bits = $blk_info["bits"];
+$blk_nonce = $blk_info["nonce"];
+$blk_confirm = $blk_info["confirmations"];
+if (strpos($blk_flgd, 'proof-of-work') !== false)
+{
+$blk_flgd = "POW";
+} else {
+$blk_flgd = "POS";
+}
+$epoch = $blk_info["time"];
+//
+$blk_s = ("hash=$block_hash
+timestamp=$epoch
+diff=$blk_mdiff
+version=$blk_ver
+bits=$blk_bits
+nonce=$blk_nonce
+size=$blk_size
+miner=$blk_flgd
+tranz=$blk_trans
+fees=$blk_fee
+reward=$blk_amount
+confirm=$blk_confirm");
+$fdn = fopen($data, "w");
+fwrite($fdn, "$blk_s");
+fclose($fdn);
+//
+}
+}else{
 $block_hash = $client->getblockhash($block_index);
 if($block_hash == ""){
 $blk_trans = "0";
@@ -37,13 +108,15 @@ $blk_ver = $blk_info["version"];
 $blk_bits = $blk_info["bits"];
 $blk_nonce = $blk_info["nonce"];
 $blk_confirm = $blk_info["confirmations"];
+$epoch = $blk_info["time"];
 if (strpos($blk_flgd, 'proof-of-work') !== false)
 {
 $blk_flgd = "POW";
 } else {
 $blk_flgd = "POS";
 }
-$epoch = $blk_info["time"];
+}
+}
 $dt = new DateTime("@$epoch");
 $ntime = $dt->format('Y-m-d H:i:s');
 }
@@ -52,7 +125,7 @@ $ntime = $dt->format('Y-m-d H:i:s');
 <html lang="en">
 <div class="container">
 <div class="alert alert-info">
-  <strong><?php echo $langconst['blk'] ?> #<?php echo $blk_inf ?></strong> <?php echo $langconst['hsh'] ?> <?php echo $blk_info["hash"] ?>
+  <strong><?php echo $langconst['blk'] ?> #<?php echo $blk_inf ?></strong> <?php echo $langconst['hsh'] ?> <?php echo $block_hash ?>
 </div>
 <div class="row">
 <div class="col-md-6">
