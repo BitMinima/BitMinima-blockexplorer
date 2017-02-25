@@ -1,7 +1,6 @@
 <?php
 include('header.php');
 $network_info = $client->getinfo ();
-$network_info = $client->getinfo ();
 if($network_info == ""){
 $blk_trans = "0";
 $blk_mdiff = "0";
