@@ -41,7 +41,7 @@ $net_speedh /= 1000;
 <html lang="en">
 <div class="container">
 <div class="row">
-<div class="col-lg-8">
+<div class="col-lg-18">
 <div class="row">
 <div class="col-lg-12">
 <br/><br/>
@@ -61,7 +61,7 @@ $net_speedh /= 1000;
 </div>
 <br/><br/>
 <div class="row text-center">
-<div class="col-md-3">
+<div class="col-md-2">
 <div class="panel panel-default info-panel">
 <div class="panel-heading">
 <b><?php echo $langconst['cblk'] ?></b>
@@ -69,7 +69,7 @@ $net_speedh /= 1000;
 <div class="panel-body"><?php echo $network_info["blocks"] ?></div>
 </div>
 </div>
-<div class="col-md-3">
+<div class="col-md-2">
 <div class="panel panel-default info-panel">
 <div class="panel-heading">
 <b><?php echo $langconst['diff'] ?></b>
@@ -77,7 +77,7 @@ $net_speedh /= 1000;
 <div class="panel-body"><?php echo number_format( $net_diff["proof-of-work"], 3, '.', '' ) ?></div>
 </div>
 </div>
-<div class="col-md-3">
+<div class="col-md-2">
 <div class="panel panel-default info-panel">
 <div class="panel-heading">
 <b><?php echo $langconst['ms'] ?></b>
@@ -85,7 +85,7 @@ $net_speedh /= 1000;
 <div class="panel-body"><?php echo number_format( $network_info["moneysupply"], 3, '.', '' ) ?></div>
 </div>
 </div>
-<div class="col-md-3">
+<div class="col-md-2">
 <div class="panel panel-default info-panel">
 <div class="panel-heading">
 <b><?php echo $langconst['ns'] ?> <?php echo $net_sf ?></b>
@@ -93,7 +93,7 @@ $net_speedh /= 1000;
 <div class="panel-body"><?php echo number_format( $net_speedh, 3, '.', '' ) ?></div>
 </div>
 </div>
-<div class="col-md-3">
+<div class="col-md-2">
 <div class="panel panel-default info-panel">
 <div class="panel-heading">
 <b><?php echo $langconst['conn'] ?></b>
