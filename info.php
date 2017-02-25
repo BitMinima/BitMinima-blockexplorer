@@ -241,7 +241,7 @@ echo '<div id="sub-content"><div class="wrap">
 </table></td>
 <td colspan="3"><table id="table_txout" class="table mobile-wrap">
 <tbody> <tr>
-<td style="text-align: right;border-top: 0px solid #dddddd;"><img src="/img/',$tx_st.'.png">   ',$value_tx.' <small>',$short.'</small></td>
+<td style="text-align: right;border-top: 0px solid #dddddd;"><img src="img/',$tx_st.'.png">   ',$value_tx.' <small>',$short.'</small></td>
 </tr>
 </tbody>
 </table></td>
@@ -255,7 +255,7 @@ echo '<div id="sub-content"><div class="wrap">
 <div class="modal-content">
 <div class="modal-header">
 <div class="modal-body">
-<pre><code style="background-color: #f5f5f5;"><div id="subcontent"><div id="subloading"><img src="/img/loader.gif" class="ajax-loader"></div></div></code></pre>
+<pre><code style="background-color: #f5f5f5;"><div id="subcontent"><div id="subloading"><img src="img/loader.gif" class="ajax-loader"></div></div></code></pre>
 </div>
 <div class="modal-footer">
 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -265,7 +265,6 @@ echo '<div id="sub-content"><div class="wrap">
 </div>
 <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/highlight.min.js"></script>
 <script src="js/language.js"></script>
 </body>
 </html>
