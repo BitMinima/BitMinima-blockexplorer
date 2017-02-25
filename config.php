@@ -7,7 +7,7 @@ error_reporting( E_ERROR );
 
 $fullname = "ReddByteCoin"; //Website Title
 $short = "RBC"; //Coin Short
-$v_blk = "20";
+$v_blk = "20"; //How many blocks to display on the main page
 $fee = "0.0001";
 $net_sf = "GH/s"; //PH/s TH/s GH/s MH/s KH/s H/s
 $blk_save = "off"; //save blk_info on off
