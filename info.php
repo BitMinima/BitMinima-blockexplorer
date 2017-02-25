@@ -116,9 +116,9 @@ $blk_flgd = "POW";
 $blk_flgd = "POS";
 }
 }
-}
 $dt = new DateTime("@$epoch");
 $ntime = $dt->format('Y-m-d H:i:s');
+}
 }
 ?>
 <!DOCTYPE html>
