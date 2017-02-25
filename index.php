@@ -46,7 +46,7 @@ $net_speedh /= 1000;
 <div class="col-lg-12">
 <br/><br/>
 <div id="imaginary_container">
-<form id="searchform" role="search" method="POST" action="/info.php">
+<form id="searchform" role="search" method="POST" action="info.php">
 <div id="custom-search-input">
 <div class="input-group col-md-12">
 <input type="blkinf" id="blkinf" name="blkinf" class="form-control" placeholder="<?php echo $langconst['blkh'] ?>" autocomplete="off">
@@ -100,12 +100,12 @@ $net_speedh /= 1000;
 <script type="text/javascript">
             var coin_id = 1;
         </script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/scripts.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/scripts.js"></script>
 <script src="//maps.google.com/maps/api/js"></script>
-<script src="/js/highstock/js/highstock.js"></script>
-<script src="/js/highstock/js/modules/exporting.js"></script>
+<script src="js/highstock/js/highstock.js"></script>
+<script src="js/highstock/js/modules/exporting.js"></script>
 <div id="sub-content"><div id="blockchain">
 <div id="no-more-tables">
 <table id="table_blocks" class="col-md-12 cf table table-hover">
