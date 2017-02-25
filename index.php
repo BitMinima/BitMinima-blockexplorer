@@ -74,7 +74,7 @@ $net_speedh /= 1000;
 <div class="panel-heading">
 <b><?php echo $langconst['diff'] ?></b>
 </div>
-<div class="panel-body"><?php echo $net_diff["proof-of-work"] ?></div>
+<div class="panel-body"><?php echo number_format( $net_diff["proof-of-work"], 3, '.', '' ) ?></div>
 </div>
 </div>
 <div class="col-md-3">
@@ -82,7 +82,7 @@ $net_speedh /= 1000;
 <div class="panel-heading">
 <b><?php echo $langconst['ms'] ?></b>
 </div>
-<div class="panel-body"><?php echo $network_info["moneysupply"] ?></div>
+<div class="panel-body"><?php echo number_format( $network_info["moneysupply"], 3, '.', '' ) ?></div>
 </div>
 </div>
 <div class="col-md-3">
@@ -90,7 +90,15 @@ $net_speedh /= 1000;
 <div class="panel-heading">
 <b><?php echo $langconst['ns'] ?> <?php echo $net_sf ?></b>
 </div>
-<div class="panel-body"><?php echo $net_speedh ?></div>
+<div class="panel-body"><?php echo number_format( $net_speedh, 3, '.', '' ) ?></div>
+</div>
+</div>
+<div class="col-md-3">
+<div class="panel panel-default info-panel">
+<div class="panel-heading">
+<b><?php echo $langconst['conn'] ?></b>
+</div>
+<div class="panel-body"><a data-toggle="modal" data-target="#GetNodeList" id="showGetNodeList" href="#!network"><?php echo $network_info["connections"] ?></a></div>
 </div>
 </div>
 </div>
@@ -159,8 +167,8 @@ $cls_ldl = "label label-success";
                <td data-title="Height" class="mobile-header"><a href="info.php?blkc=',$block_index.'" title="',$fullname.' block #',$block_index.'">',$block_index.'</a></td>
                <td data-title="Flags"><span class="',$cls_ldl.'">',$blk_flgd.'</span></td>
                <td data-title="Transactions">',$blk_trans.'</td>
-               <td data-title="Amount">',$blk_amount.' <small>',$short.'</small></td>
-			   <td data-title="Difficulty">',$blk_mdiff.'</td>
+               <td data-title="Amount">',number_format( $blk_amount, 3, '.', '' ).' <small>',$short.'</small></td>
+			   <td data-title="Difficulty">',number_format( $blk_mdiff, 3, '.', '' ).'</td>
             </tr>';
 }
 }
@@ -169,5 +177,34 @@ $cls_ldl = "label label-success";
 </table>
 </div>
 </div>
+<div class="modal fade" id="GetNodeList" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog raw-class">
+<div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">x</span></button><h4 class="modal-title" id="myModalLabel"><?php echo $langconst['ndlist'] ?></h4></div><div class="modal-body"><textarea class="form-control" readonly="" style="cursor:text" rows="15">
+<?php
+$getPeerInfo = $client->getpeerinfo();
+foreach ($getPeerInfo as $key => $peer_info) {
+$peer_addr = $peer_info['addr'];
+if(strlen($peer_addr) > 26){ //delete big ip [2001:1:d2d:a123:3c31:d58:4a76:c980]:4528
+}else{
+echo "addnode=$peer_addr";
+echo "\n";
+}
+}
+?>
+</textarea></div></div>
+</div>
+</div>
+</div>
+<script type="text/javascript">
+                                    $("#showGetNodeList").click(function () {
+                                        $("#subloading").show();
+                                        $("#subcontent").load("#", function () {
+                                            $("#subloading").hide();
+                                            $('pre code').each(function (i, block) {
+                                                hljs.highlightBlock(block);
+                                            });
+                                        });
+                                    });
+        </script>
 </body>
 </html>
