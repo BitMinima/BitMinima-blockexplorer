@@ -50,6 +50,7 @@ window.location.reload()
 <ul class="dropdown-menu">
 <li><a href="?lang=en" onclick="reloadPage()" title="English"><img src="img/flags/US.png"> English</a></li>
 <li><a href="?lang=ru" onclick="reloadPage()" title="Pусский"><img src="img/flags/RU.png"> Pусский</a></li>
+<li><a href="?lang=tr" onclick="reloadPage()" title="Turkce"><img src="img/flags/TR.png"> Turkce</a></li>
 </ul>
 </li>
 </ul>
