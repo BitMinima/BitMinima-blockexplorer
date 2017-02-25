@@ -263,9 +263,9 @@ echo '<div id="sub-content"><div class="wrap">
 </div>
 </div>
 </div>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/highlight.min.js"></script>
-<script src="/js/language.js"></script>
+<script src="js/language.js"></script>
 </body>
 </html>
