@@ -46,7 +46,7 @@ $net_speedh /= 1000;
 <div class="col-lg-12">
 <br/><br/>
 <div id="imaginary_container">
-<form id="searchform" role="search" method="POST" action="info.php">
+<form id="searchform" role="search" method="POST" action="api.php">
 <div id="custom-search-input">
 <div class="input-group col-md-12">
 <input type="blkinf" id="blkinf" name="blkinf" class="form-control" placeholder="<?php echo $langconst['blkh'] ?>" autocomplete="off">
