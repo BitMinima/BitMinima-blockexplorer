@@ -15,12 +15,10 @@ $lang = "en";
 $langconst = parse_ini_file("lang/$lang.ini");
 ?>
 <html lang="en">
-		<!-- scripts -->
 		<script src="assets/js/jquery-3.1.0.min.js"></script>
 		<script src="assets/js/bootstrap.min.js"></script>
 		<script src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <head>
-<!-- <meta charset="Windows-1251" /> -->
 <meta charset="charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title><?php echo $fullname ?> block explorer</title>
