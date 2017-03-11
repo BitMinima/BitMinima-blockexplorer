@@ -9,14 +9,16 @@ if($blk_idt == ""){
 $blk_id = $blk_idt;
 }
 if($blk_id == ""){
-if($tx_id == ""){
-echo "No Request";
-}else{
-$raw_tx = $client->getrawtransaction($tx_id, $verbose=1);
+$tx_id = $_POST['blkinf'];
+if(strlen($tx_id) >= 24){
+$raw_tx = $client->getrawtransaction($tx_id);
 $block_hash = $raw_tx["blockhash"];
 $blk_info = $client->getblock($block_hash);
 $go_height = $blk_info["height"];
 header ("Location: info.php?blkc=$go_height");
+exit();
+}else{
+header ("Location: info.php?blkc=$tx_id");
 exit();
 }
 }else{
