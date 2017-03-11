@@ -15,7 +15,6 @@ echo "Error connect to RPC_Client.";
 }else{
 $blk_get = $_GET['blkc'];
 if($blk_get == ""){
-$blk_inft = $_POST['blkinf'];
 if($blk_inft == 0){
 $blk_inft++;
 }
@@ -205,6 +204,8 @@ $raw_tx = $client->getrawtransaction($tx_id, $verbose=1);
 foreach ($raw_tx["vout"] as $key => $txout)
 {
 $value_tx = $txout["value"];
+$num = $txout["n"];
+$blk_trans = $num;
 if($txout["value"] == 0){
 $value_tx = $blk_info["mint"];
 $tx_fee = 0.00000000;
@@ -216,15 +217,30 @@ $tx_st = "input";
 if($txout["value"] == $blk_info["mint"]){
 $tx_st = "mined";
 }
+if($num == 0){
+$tx_st = "mined";
+}
 foreach ($txout["scriptPubKey"]["addresses"] as $key => $address);
 {
 $addres = $address;
 if($addres == ""){
+$lk++;
 $addres = $langconst['nit'];
 $tx_st = "mined";
 }
+if($ns >= 1){
+$pa = $addres;
+if($address = $addres){
+$lk = 4;
+}
+$ns = 0;
+}else{
+$ns++;
 }
 }
+if($lk >= 2){
+$lk = 0;
+}else{
 echo '<div id="sub-content"><div class="wrap">
 <table id="table_tx" class="table mobile-wrap">
 <thead></thead>
@@ -241,12 +257,14 @@ echo '<div id="sub-content"><div class="wrap">
 </table></td>
 <td colspan="3"><table id="table_txout" class="table mobile-wrap">
 <tbody> <tr>
-<td style="text-align: right;border-top: 0px solid #dddddd;"><img src="img/',$tx_st.'.png">   ',$value_tx.' <small>',$short.'</small></td>
+<td style="text-align: right;border-top: 0px solid #dddddd;"><img src="img/',$tx_st.'.png">   ',number_format( $value_tx, 5, '.', '' ).' <small>',$short.'</small></td>
 </tr>
 </tbody>
 </table></td>
 </tr>
 </tbody>';
+}
+}
 }  
 ?>
 </div>
@@ -265,6 +283,7 @@ echo '<div id="sub-content"><div class="wrap">
 </div>
 <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/highlight.min.js"></script>
 <script src="js/language.js"></script>
 </body>
 </html>
