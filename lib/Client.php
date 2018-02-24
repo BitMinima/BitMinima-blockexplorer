@@ -39,6 +39,11 @@ class Client {
 		return $this->jsonrpc->getmininginfo();
 	}
 	
+	function gettxoutsetinfo ()
+	{	 
+		return $this->jsonrpc->gettxoutsetinfo();
+	}
+	
 	function getdifficulty ()
 	{
 		return $this->jsonrpc->getdifficulty();
