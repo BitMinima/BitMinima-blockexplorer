@@ -15,7 +15,47 @@ echo "Error connect to RPC_Client.";
 }else{
 $net_speed = $client->getmininginfo ();
 $net_diff = $client->getdifficulty ();
-$net_speedh = $net_speed["netmhashps"];
+$net_speedh = $net_speed["networkhashps"];
+
+if( $net_speedh<1000 )
+{
+	$net_sf = "H/s";
+}
+else
+{
+ 	$net_speedh=$net_speedh/1000;
+	if( $net_speedh<1000 )
+	{
+		$net_sf = "KH/s";
+	}
+	else
+	{
+		$net_speedh=$net_speedh/1000;
+		if( $net_speedh<1000 )
+		{
+			$net_sf = "MH/s";
+		}
+		else
+		{
+			$net_speedh=$net_speedh/1000;
+			if( $net_speedh<1000 )
+			{
+				$net_sf = "GH/s";
+			}
+			else
+			{
+			$net_speedh=$net_speedh/1000;
+			if( $net_speedh<1000 )
+			{
+				$net_sf = "TH/s";
+			}
+			}
+		}
+	}
+}
+
+/*
+
 if($net_sf == "H/s"){
 $net_speedh *= 1000;
 $net_speedh *= 1000;
@@ -35,6 +75,9 @@ $net_speedh /= 1000;
 $net_speedh /= 1000;
 $net_speedh /= 1000;
 }
+
+*/
+
 }
 ?>
 <!DOCTYPE html>
@@ -74,7 +117,7 @@ $net_speedh /= 1000;
 <div class="panel-heading">
 <b><?php echo $langconst['diff'] ?></b>
 </div>
-<div class="panel-body"><?php echo number_format( $net_diff["proof-of-work"], 3, '.', '' ) ?></div>
+<div class="panel-body"><?php echo number_format( $net_diff, 3, '.', '' ) ?></div>
 </div>
 </div>
 <div class="col-md-2">
@@ -82,7 +125,7 @@ $net_speedh /= 1000;
 <div class="panel-heading">
 <b><?php echo $langconst['ms'] ?></b>
 </div>
-<div class="panel-body"><?php echo number_format( $network_info["moneysupply"], 3, '.', '' ) ?></div>
+<div class="panel-body"><?php $network_info1 = $client->gettxoutsetinfo (); echo number_format($network_info1["total_amount"], 3, '.', '' ); ?></div>
 </div>
 </div>
 <div class="col-md-2">
@@ -181,6 +224,7 @@ $cls_ldl = "label label-success";
 <div class="modal-dialog raw-class">
 <div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">x</span></button><h4 class="modal-title" id="myModalLabel"><?php echo $langconst['ndlist'] ?></h4></div><div class="modal-body"><textarea class="form-control" readonly="" style="cursor:text" rows="15">
 <?php
+/*
 $getPeerInfo = $client->getpeerinfo();
 foreach ($getPeerInfo as $key => $peer_info) {
 $peer_addr = $peer_info['addr'];
@@ -190,11 +234,15 @@ echo "addnode=$peer_addr";
 echo "\n";
 }
 }
+*/
 ?>
 </textarea></div></div>
 </div>
 </div>
 </div>
+
+Based on <a href="https://github.com/Denlon210/ReddByteCoin-block-explorer">github.com/Denlon210/ReddByteCoin-block-explorer</a>
+
 <script type="text/javascript">
                                     $("#showGetNodeList").click(function () {
                                         $("#subloading").show();
