@@ -198,14 +198,14 @@ $blk_tx = $blk_info["tx"];
 $blk_trans = count($blk_tx);
 $blk_amount = $blk_info["mint"];
 $blk_flgd = $blk_info["flags"];
-if (strpos($blk_flgd, 'proof-of-work') !== false)
-{
+// if (strpos($blk_flgd, 'proof-of-work') !== false)
+// {
 $blk_flgd = "POW";
 $cls_ldl = "label label-default";
-} else {
-$blk_flgd = "POS";
-$cls_ldl = "label label-success";
-}
+// } else {
+// $blk_flgd = "POS";
+// $cls_ldl = "label label-success";
+// }
 	      echo '<tr>
                <td data-title="Height" class="mobile-header"><a href="info.php?blkc=',$block_index.'" title="',$fullname.' block #',$block_index.'">',$block_index.'</a></td>
                <td data-title="Flags"><span class="',$cls_ldl.'">',$blk_flgd.'</span></td>

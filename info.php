@@ -57,12 +57,12 @@ $blk_ver = $blk_info["version"];
 $blk_bits = $blk_info["bits"];
 $blk_nonce = $blk_info["nonce"];
 $blk_confirm = $blk_info["confirmations"];
-if (strpos($blk_flgd, 'proof-of-work') !== false)
-{
+// if (strpos($blk_flgd, 'proof-of-work') !== false)
+// {
 $blk_flgd = "POW";
-} else {
-$blk_flgd = "POS";
-}
+// } else {
+// $blk_flgd = "POS";
+// }
 $epoch = $blk_info["time"];
 //
 $blk_s = ("hash=$block_hash
@@ -90,7 +90,7 @@ $blk_mdiff = "0";
 $blk_amount = "0";
 $blk_size = "0";
 $blk_ver = "0";
-$blk_flgd = "unknown";
+$blk_flgd = "proof-of-work";
 $blk_bits = "unknown";
 $blk_nonce = "0";
 $blk_confirm = "0";
@@ -108,12 +108,12 @@ $blk_bits = $blk_info["bits"];
 $blk_nonce = $blk_info["nonce"];
 $blk_confirm = $blk_info["confirmations"];
 $epoch = $blk_info["time"];
-if (strpos($blk_flgd, 'proof-of-work') !== false)
-{
+// if (strpos($blk_flgd, 'proof-of-work') !== false)
+// {
 $blk_flgd = "POW";
-} else {
-$blk_flgd = "POS";
-}
+// } else {
+// $blk_flgd = "POS";
+// }
 }
 }
 $dt = new DateTime("@$epoch");
